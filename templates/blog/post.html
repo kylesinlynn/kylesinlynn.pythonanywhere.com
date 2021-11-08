@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ post.title }}{% endblock %}
+
+{% block brand %}{% url 'posts' %}{% endblock %}
+
+{% block main %}
+
+<div class="card" style="max-width: 50rem; padding: 2rem; margin: 2rem auto;">
+	<img src="{{ post.image.url }}" class="card-img-top" alt="{{ post.title }}">
+	<div class="card-body">
+		<h2>{{ post.title }}</h2>
+	  	<p class="text-muted">{{ post.created_date }}</p>
+	    <p class="card-text">{{ post.content }}</p>
+	    <a href="{% url 'posts' %}" class="badge bg-primary text-wrap">All posts</a>
+	</div>
+</div>
+
+{% endblock %}

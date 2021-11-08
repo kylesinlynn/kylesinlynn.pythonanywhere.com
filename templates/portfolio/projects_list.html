@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block brand %}{% url 'projects-list' %}{% endblock %}
+
+{% block main %}
+<div style="padding-bottom: 4rem;">
+	<table class="table" style="max-width: 50rem; margin: auto;">
+	  <thead>
+	    <tr>
+	      <th scope="col">#</th>
+	      <th scope="col">Repositories</th>
+	      <th scope="col">View on</th>
+	    </tr>
+	  </thead>
+	  <tbody>
+	  	{% for project in projects %}
+	    <tr>
+	      <th scope="row">{{ forloop.counter }}</th>
+	      <td>{{ project.name }}</td>
+	      <td><a href="{{ project.html_url }}"><i class="lni lni-github-original text-dark" style="font-size: 2em;"></i></a></td>
+	    </tr>
+	    {% endfor %}
+	  </tbody>
+	</table>
+</div>
+
+{% endblock %}
