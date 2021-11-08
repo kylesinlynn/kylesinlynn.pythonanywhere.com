@@ -13,7 +13,7 @@ db.sqlite3
 
 # Static folder at project root
 /static/admin/
-/*/migrations/
+/blog/migrations/
 
 # macOS
 ._*
