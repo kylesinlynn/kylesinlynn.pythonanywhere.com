@@ -42,12 +42,18 @@ def home(request):
 	frameworks = [
 		{
 			'name': 'Django',
-		}
+		},
+	]
+	os = [
+		{
+			'name': 'Linux',
+		},
 	]
 	data = {
 		'certification': certification,
 		'languages': languages,
 		'frameworks': frameworks,
+		'os': os,
 	}
 	return render(request, 'portfolio/home.html', data)
 
