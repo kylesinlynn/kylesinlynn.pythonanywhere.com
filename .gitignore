@@ -12,7 +12,7 @@ venv/
 db.sqlite3
 
 # Static folder at project root
-/static/admin/
+/staticfiles/admin/
 /blog/migrations/
 
 # macOS
