@@ -4,16 +4,24 @@ from django.utils import timezone
 
 # Create your models here.
 class Post(models.Model):
-	title = models.CharField(max_length=200)
-	content = models.TextField()
-	image = models.ImageField(upload_to='imgs')
+	title = models.CharField(max_length=200,)
+	content = models.TextField(blank=True,)
+	image = models.ImageField(upload_to='imgs', null=True,)
+	class Draft(models.IntegerChoices):
+		NO = 0
+		YES = 1
+		__empty__ = 0
+	draft = models.IntegerField(choices=Draft.choices)
 	# auto fill
-	author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
-	created_date = models.DateTimeField(default=timezone.now)
-	published_date = models.DateTimeField(blank=True, null=True)
+	author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.DO_NOTHING,)
+	created_date = models.DateTimeField(default=timezone.now, null=True,)
 
 	def publish(self):
-		self.published_date = timezone.now()
+		self.created_date = timezone.now()
+		self.save()
+
+	def draft(self):
+		self.created_date = None
 		self.save()
 
 	def __str__(self):

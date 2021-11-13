@@ -37,7 +37,20 @@
 						</a>
 						<a href="{% url 'contact' %}" class="nav-link text-white">
 							<i class="lni lni-phone"></i> Contact
-						</a>	
+						</a>
+						<!-- User Authentication -->
+						{% if user.is_authenticated %}
+						<a href="{% url 'new_post' %}" class="nav-link text-white">
+							New Post
+						</a>
+						<a href="{% url 'logout' %}" class="nav-link text-white">
+							Logout
+						</a>
+						{% else %}
+						<a href="{% url 'login' %}" class="nav-link text-white">
+							Login
+						</a>
+						{% endif %}
 					</div>
 				</div>
 			</nav>
