@@ -1,0 +1,39 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    {% comment %} SEO {% endcomment %}
+    <meta name="title" content="Kyle Sin Lynn | Software Developer">
+    <meta name="description" content="Kyle Sin Lynn, a dedicated software engineer, excels in Python and Django. Committed to innovation, problem-solving, and collaborative success.">
+    <meta name="keywords" content="kylesinlynn, Kyle Sin Lynn">
+    <meta name="robots" content="index, follow">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="language" content="English">
+    <meta name="revisit-after" content="1 days">
+    <meta name="author" content="Kyle Sin Lynn">
+
+    <title>
+        {% block title %}Kyle Sin Lynn | Software Developer{% endblock title %}
+    </title>
+
+    {% comment %} HTMX {% endcomment %}
+    <script src="{% static 'js/htmx.min.js' %}"></script>
+</head>
+<body>
+    <header>
+
+    </header>
+    <main>
+        {% block main %}
+            <h1>Portfolio Main</h1>
+        {% endblock main %}
+    </main>
+    <footer>
+
+    </footer>
+</body>
+</html>
