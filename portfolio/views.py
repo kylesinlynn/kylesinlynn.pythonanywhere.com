@@ -17,10 +17,6 @@ def index(request):
         'x': 'kylesinlynn',
         'github': 'kylesinlynn',
         
-        'process': {
-            
-        },
-        
         'works': [
                 {
                     'client': 'Microsoft Inc',
