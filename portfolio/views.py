@@ -12,7 +12,6 @@ def index(request):
         'image': 'https://avatars.githubusercontent.com/u/82741688?v=4',
         'email': 'kylesinlynn@gmail.com',
         'phone': '+959766107203',
-        'copyright': 2024,
         'facebook': 'danielhannaing',
         'x': 'kylesinlynn',
         'github': 'kylesinlynn',
