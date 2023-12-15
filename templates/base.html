@@ -26,6 +26,12 @@
         <meta name="language" content="English" />
         <meta name="revisit-after" content="1 days" />
         <meta name="author" content="{{ title }}" />
+        <meta property="og:title" content="{{ title }}">
+        <meta property="og:site_name" content="{{ title }}">
+        <meta property="og:url" content="{{ request.get_full_path }}">
+        <meta property="og:description" content="{{ description }}">
+        <meta property="og:type" content="website">
+        <meta property="og:image" content={{ image }}>
 
         <link rel="shortcut icon" href="{{ image }}" type="image/jpg" />
 
