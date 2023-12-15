@@ -7,12 +7,12 @@
             <h1
                 class="max-w-2xl mb-4 text-4xl font-extrabold tracking-tight leading-none md:text-5xl xl:text-6xl dark:text-white"
             >
-                {{ title }}
+                {{ profile.title }}
             </h1>
             <p
                 class="max-w-2xl mb-6 font-light text-gray-500 lg:mb-8 md:text-lg lg:text-xl dark:text-gray-400"
             >
-                {{ description }}
+                {{ profile.description }}
             </p>
             <a
                 href="#"
@@ -36,8 +36,8 @@
         <div class="hidden lg:mt-0 lg:col-span-5 lg:flex">
             <img
                 class="rounded-full w-96 h-96"
-                src="{{ image }}"
-                alt="{{ title }}'s image"
+                src="{{ profile.profile_image.url }}"
+                alt="{{ profile.title }}'s image"
             />
         </div>
     </div>
@@ -157,7 +157,7 @@
         <div
             class="grid grid-cols-1 text-center sm:mt-16 gap-x-20 gap-y-12 sm:grid-cols-2 lg:grid-cols-3"
         >
-            {% for work in works %}
+            {% for work in profile.work.all %}
             <div class="space-y-4 mt-3">
                 <span
                     class="bg-gray-100 text-gray-900 text-xs font-medium inline-flex items-center px-2.5 py-0.5 rounded dark:bg-gray-700 dark:text-gray-300"
@@ -211,9 +211,9 @@
         >
             Need help troubleshooting your tech? I'm your guy! Let's chat about your issue and find a fix. Email me at
             <a 
-                href="mailto:{{ email }}"
+                href="mailto:{{ profile.email }}"
                 class="inline-flex items-center font-medium text-blue-600 dark:text-blue-500 hover:underline"
-            >{{ email }}</a>
+            >{{ profile.email }}</a>
         </p>
     </div>
 </section>
