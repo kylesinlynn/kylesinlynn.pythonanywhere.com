@@ -121,7 +121,11 @@
                 <p
                     class="mb-4 text-sm text-center text-gray-500 dark:text-gray-400 sm:mb-0"
                 >
-                    &copy; {{ copyright }} {{ title }}. All rights reserved.
+                    &copy; 
+                    <span id="copyright">
+                        <script>document.getElementById('copyright').appendChild(document.createTextNode(new Date().getFullYear()))</script>
+                    </span>
+                    {{ title }}. All rights reserved.
                 </p>
                 <div class="flex justify-center items-center space-x-1">
                     <a
