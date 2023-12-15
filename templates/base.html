@@ -35,7 +35,7 @@
 
         <link rel="shortcut icon" href="{{ profile.profile_image.url }}" type="image/jpg" />
 
-        <title>{{ profile.title }}</title>
+        <title>{% block title %}{{ profile.title }}{% endblock title %}</title>
     </head>
     <body>
         <header>
@@ -63,10 +63,10 @@
                             class="text-sm text-gray-500 dark:text-white hover:underline"
                             >{{ profile.email }}</a
                         >
-                        {% if user.authenticated %}
-                        {% include "./header/auth.html" %}
+                        {% if user.is_authenticated %}
+                        {% include "header/auth.html" %}
                         {% else %}
-                        {% include "./header/auth.html" %}
+                        {% include "header/noauth.html" %}
                         {% endif %}
                     </div>
                 </div>
@@ -79,7 +79,7 @@
                         >
                             <li>
                                 <a
-                                    href="#home"
+                                    href="{% url "portfolio:index" %}#home"
                                     class="text-gray-900 dark:text-white hover:underline"
                                     aria-current="page"
                                     >home</a
@@ -87,21 +87,21 @@
                             </li>
                             <li>
                                 <a
-                                    href="#process"
+                                    href="{% url "portfolio:index" %}#process"
                                     class="text-gray-900 dark:text-white hover:underline"
                                     >process</a
                                 >
                             </li>
                             <li>
                                 <a
-                                    href="#work"
+                                    href="{% url "portfolio:index" %}#work"
                                     class="text-gray-900 dark:text-white hover:underline"
                                     >work</a
                                 >
                             </li>
                             <li>
                                 <a
-                                    href="#contact"
+                                    href="{% url "portfolio:index" %}#contact"
                                     class="text-gray-900 dark:text-white hover:underline"
                                     >contact</a
                                 >

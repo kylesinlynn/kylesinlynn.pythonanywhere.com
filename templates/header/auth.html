@@ -1,7 +1,8 @@
 {% block header %}
-<a
-    href="#"
-    class="text-sm text-blue-600 dark:text-blue-500 hover:underline"
-    >login</a
->
+<form action="{% url "logout" %}" method="POST">
+    {% csrf_token %}
+    <button
+        class="text-sm text-blue-600 dark:text-blue-500 hover:underline"
+    >logout</button>
+</form>
 {% endblock header %}
