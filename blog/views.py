@@ -14,7 +14,7 @@ def index(request):
     blog = paginator.get_page(page)
     
     context = {
-        'profile': profile(1),
+        'profile': profile(7),
         'blog': blog
     }
     return render(request, 'blog/index.html', context)

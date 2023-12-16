@@ -71,6 +71,7 @@
                     hx-target="closest article"
                     hx-select="#articles > article"
                     hx-trigger="revealed"
+                    hx-indicator="#status"
                     hx-get="{% url "blog:index" %}?page={{ blog.next_page_number }}"
                 >
                     <svg aria-hidden="true" id="status" class="htmx-indicator inline w-4 h-4 text-gray-500 animate-spin dark:text-gray-600 fill-blue-600" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">
