@@ -1,5 +1,4 @@
 from django.db import models
-from django.conf import settings
 
 class Profile(models.Model):
     title = models.CharField(name='title', max_length=255, help_text='Enter your website title', null=True)
