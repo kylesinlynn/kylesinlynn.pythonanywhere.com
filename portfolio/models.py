@@ -6,6 +6,7 @@ class Profile(models.Model):
     description = models.TextField(name='description', max_length=500, help_text='Enter your website description', null=True)
     keywords = models.TextField(name="keywords", help_text="Enter search keywords seperated by comma (,)", null=True)
     image = models.ImageField(name='profile_image', upload_to='imgs/', help_text="Upload your profile image", blank=True, null=True)
+    resume = models.CharField(name='resume_link', max_length=500, help_text="Enter your resume url", blank=True, null=True)
     email = models.EmailField(name='email', max_length=255, help_text="Enter your email address", null=True)
     phone = models.CharField(name='phone', max_length=255, help_text="Enter your phone number", null=True)
     facebook = models.CharField(name='facebook_username', max_length=255, help_text="Enter your facebook username", null=True)

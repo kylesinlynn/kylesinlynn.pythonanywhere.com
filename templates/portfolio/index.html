@@ -21,11 +21,12 @@
             >
                 {{ profile.description }}
             </p>
+            {% if profile.resume_link %}
             <a
-                href="#"
+                href="{{ profile.resume_link }}"
                 class="inline-flex items-center justify-center py-3 mr-3 text-base font-medium text-center text-yellow-700 rounded-lg bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 dark:focus:ring-primary-900"
             >
-                Go to blog
+                See my resume
                 <svg
                     class="w-5 h-5 ml-2 -mr-1"
                     fill="currentColor"
@@ -39,6 +40,7 @@
                     ></path>
                 </svg>
             </a>
+            {% endif %}
         </div>
     </div>
 </section>
