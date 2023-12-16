@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django_htmx', # Django HTMX combination
     'portfolio',
+    'blog'
 ]
 
 MIDDLEWARE = [
