@@ -54,7 +54,7 @@
                     class="flex flex-wrap justify-between items-center mx-auto max-w-screen-xl p-4"
                 >
                     <a
-                        href="{{ request.get_full_path }}"
+                        href="{% url "portfolio:index" %}"
                         class="flex items-center space-x-3 rtl:space-x-reverse"
                     >
                         <span
@@ -92,36 +92,31 @@
                                     href="{% url "portfolio:index" %}#home"
                                     class="text-gray-900 dark:text-white hover:underline"
                                     aria-current="page"
-                                    >home</a
-                                >
+                                    >home</a>
                             </li>
                             <li>
                                 <a
                                     href="{% url "portfolio:index" %}#process"
                                     class="text-gray-900 dark:text-white hover:underline"
-                                    >process</a
-                                >
+                                    >process</a>
                             </li>
                             <li>
                                 <a
                                     href="{% url "portfolio:index" %}#work"
                                     class="text-gray-900 dark:text-white hover:underline"
-                                    >work</a
-                                >
+                                    >work</a>
                             </li>
                             <li>
                                 <a
                                     href="{% url "portfolio:index" %}#contact"
                                     class="text-gray-900 dark:text-white hover:underline"
-                                    >contact</a
-                                >
+                                    >contact</a>
                             </li>
                             <li>
-                                <a
-                                    href="{% url "blog:index" %}"
+                                <button
+                                    hx-get="{% url "blog:index" %}"
                                     class="text-gray-900 dark:text-white hover:underline"
-                                    >blog</a
-                                >
+                                    >blog</button>
                             </li>
                         </ul>
                     </div>
