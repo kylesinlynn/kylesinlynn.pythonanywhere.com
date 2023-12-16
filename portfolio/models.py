@@ -19,7 +19,7 @@ class Work(models.Model):
     client = models.CharField(name="client", max_length=255, help_text="Enter your client name", blank=True, null=True)
     title = models.CharField(name="title", max_length=255, help_text="Enter project name", blank=True, null=True)
     description = models.TextField(name="description", max_length=500, help_text="Enter the details of the project", blank=True, null=True)
-    link = models.CharField(name="link", help_text="Enter project link", max_length=500, default="#")
+    link = models.CharField(name="link", help_text="Enter project link", max_length=500, blank=True, null=True)
     
     profile = models.ForeignKey(Profile, related_name="work", on_delete=models.DO_NOTHING)
 
