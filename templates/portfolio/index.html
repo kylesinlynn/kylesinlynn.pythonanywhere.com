@@ -16,7 +16,7 @@
             </p>
             <a
                 href="#"
-                class="inline-flex items-center justify-center px-5 py-3 mr-3 text-base font-medium text-center text-dark rounded-lg bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 dark:focus:ring-primary-900"
+                class="inline-flex items-center justify-center px-5 py-3 mr-3 text-base font-medium text-center text-yellow-700 rounded-lg bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 dark:focus:ring-primary-900"
             >
                 Go to blog
                 <svg
@@ -33,9 +33,9 @@
                 </svg>
             </a>
         </div>
-        <div class="hidden lg:mt-0 lg:col-span-5 lg:flex">
+        <div class="lg:mt-0 lg:col-span-5 lg:flex">
             <img
-                class="rounded-full w-96 h-96"
+                class="rounded-full max-w-80 max-h-80"
                 src="{{ profile.profile_image.url }}"
                 alt="{{ profile.title }}'s image"
             />
@@ -175,7 +175,7 @@
                 <a
                     href="{{ work.link }}"
                     title=""
-                    class="text-dark bg-primary-700 justify-center hover:bg-primary-800 inline-flex items-center focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
+                    class="text-yellow-700 bg-primary-700 justify-center hover:bg-primary-800 inline-flex items-center focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
                     role="button"
                 >
                     View
@@ -212,7 +212,7 @@
             Need help troubleshooting your tech? I'm your guy! Let's chat about your issue and find a fix. Email me at
             <a 
                 href="mailto:{{ profile.email }}"
-                class="inline-flex items-center font-medium text-blue-600 dark:text-blue-500 hover:underline"
+                class="inline-flex items-center font-medium text-yellow-700 dark:text-yellow-300 hover:underline"
             >{{ profile.email }}</a>
         </p>
     </div>
