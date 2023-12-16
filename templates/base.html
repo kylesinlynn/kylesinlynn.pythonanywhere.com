@@ -1,7 +1,13 @@
 {% load static %}
 
 <!DOCTYPE html>
-<html lang="en">
+<html
+    lang="en"
+    hx-boost="true"
+    hx-push-url="true"
+    hx-target="body"
+    hx-swap="outerHTML"
+>
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -36,6 +42,10 @@
         <link rel="shortcut icon" href="{{ profile.profile_image.url }}" type="image/jpg" />
 
         <title>{% block title %}{{ profile.title }}{% endblock title %}</title>
+
+        <style>
+            {% block style %}{% endblock style %}
+        </style>
     </head>
     <body>
         <header>
@@ -104,6 +114,13 @@
                                     href="{% url "portfolio:index" %}#contact"
                                     class="text-gray-900 dark:text-white hover:underline"
                                     >contact</a
+                                >
+                            </li>
+                            <li>
+                                <a
+                                    href="{% url "blog:index" %}"
+                                    class="text-gray-900 dark:text-white hover:underline"
+                                    >blog</a
                                 >
                             </li>
                         </ul>
@@ -217,5 +234,9 @@
 
         {% comment %} Tailwind CSS - Flowbite {% endcomment %}
         <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.0/flowbite.min.js"></script>
+
+        <script>
+            {% block script %}{% endblock script %}
+        </script>
     </body>
 </html>

@@ -1,5 +1,8 @@
 {% block header %}
-<form action="{% url "logout" %}" method="POST">
+<form
+    hx-post="{% url "logout" %}"
+    hx-confirm="Do you want to logout?"
+>
     {% csrf_token %}
     <button
         class="text-sm text-yellow-700 dark:text-yellow-300 hover:underline"

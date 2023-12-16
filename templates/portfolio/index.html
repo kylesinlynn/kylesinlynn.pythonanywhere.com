@@ -1,11 +1,13 @@
-{% extends "base.html" %} {% block main %}
+{% extends "base.html" %}
+
+{% block main %}
 <section id="home" class="bg-white dark:bg-gray-900">
     <div
         class="grid max-w-screen-xl px-5 py-8 mx-auto lg:gap-8 xl:gap-0 lg:py-16 lg:grid-cols-12"
     >
         <div class="lg:mt-0 lg:col-span-5 lg:flex">
             <img
-                class="rounded-full h-auto max-w-full"
+                class="rounded-full h-auto max-w-sm"
                 src="{{ profile.profile_image.url }}"
                 alt="{{ profile.title }}'s image"
             />
