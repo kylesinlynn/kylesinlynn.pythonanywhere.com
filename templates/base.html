@@ -1,4 +1,5 @@
 {% load static %}
+{% load django_htmx %}
 
 <!DOCTYPE html>
 <html
@@ -14,6 +15,7 @@
 
         {% comment %} HTMX {% endcomment %}
         <script src="{% static 'js/htmx.min.js' %}"></script>
+        {% django_htmx_script %}
 
         {% comment %} Tailwind CSS - Flowbite {% endcomment %}
         <link
