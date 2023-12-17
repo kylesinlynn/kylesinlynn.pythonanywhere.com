@@ -1,0 +1,66 @@
+{% extends "base.html" %} {% block main %}
+<form 
+    hx-encoding='multipart/form-data'
+    hx-post='{% url "blog:update" article.slug %}'
+    class="max-w-sm mx-auto"
+>
+    <h2 class="mb-4 text-xl font-bold text-gray-900 dark:text-white">Update the article</h2>
+    {% csrf_token %}
+    <div class="mb-5">
+        {% include "_form_errors.html" with form=form %}
+        <label
+            for="title"
+            class="block mb-2 text-sm font-medium text-gray-900 dark:text-yellow-300"
+            >Put article title</label
+        >
+        <input
+            type="text"
+            id="title"
+            name="title"
+            value="{{ article.title }}"
+            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-yellow-500 focus:border-yellow-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-yellow-300 dark:focus:ring-yellow-500 dark:focus:border-yellow-500"
+            placeholder="A Grug Brained Developer"
+            required
+        />
+        {% if form.title.errors %}
+            <span class="text-red-700">{{ form.title.errors }}</span>
+        {% endif %}
+    </div>
+    <div class="mb-5">
+        <label
+            for="description"
+            class="block mb-2 text-sm font-medium text-gray-900 dark:text-yellow-300"
+            >Put article text</label
+        >
+        <textarea
+            id="description"
+            name="description"
+            class="block w-full p-4 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 sm:text-md focus:ring-yellow-500 focus:border-yellow-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-yellow-300 dark:focus:ring-yellow-500 dark:focus:border-yellow-500"
+            placeholder="complexity very, very bad"
+        >{{ article.description }}</textarea>
+        {% if form.description.errors %}
+            <span class="text-red-700">{{ form.description.errors }}</span>
+        {% endif %}
+    </div>
+    <div class="mb-5">
+        {% if article.image %}
+            <img class="h-auto max-w-sm mx-auto" src="{{ article.image.url }}" alt="{{ article.title }}'s image">
+        {% endif %}
+        <label class="block mb-2 text-sm font-medium text-dark-900 dark:text-white" for="image">Upload image</label>
+        <input class="block w-full text-sm text-dark-900 border border-dark-300 rounded-lg cursor-pointer bg-dark-50 dark:text-dark-400 focus:outline-none dark:bg-dark-700 dark:border-dark-600 dark:placeholder-dark-400" name="image" id="image" type="file" accept="image/*" value="{% if article.image %}{{ article.image.url }}{% endif %}">
+    </div>
+    <button
+        type="submit"
+        class="text-yellow-700 hover:bg-yellow-300 focus:ring-4 focus:outline-none focus:ring-yellow-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-yellow-600 dark:hover:bg-yellow-700 dark:focus:ring-yellow-800"
+    >
+        Update
+    </button>
+    <button
+        hx-get="{% url "blog:article" article.slug %}"
+        type="cancel"
+        class="text-dark-700 hover:bg-dark-300 focus:ring-4 focus:outline-none focus:ring-dark-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-dark-600 dark:hover:bg-dark-700 dark:focus:ring-dark-800"
+    >
+        Cancel
+    </button>
+</form>
+{% endblock main %}

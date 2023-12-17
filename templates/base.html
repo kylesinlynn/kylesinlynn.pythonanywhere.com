@@ -1,76 +1,242 @@
 {% load static %}
+{% load django_htmx %}
 
 <!DOCTYPE html>
-<html lang="en">
-<head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>{% block title %}KSL{% endblock %} - Portfolio</title>
+<html
+    lang="en"
+    hx-boost="true"
+    hx-push-url="true"
+    hx-target="body"
+    hx-swap="outerHTML"
+    hx-indicator="#default-indicator"
+    hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}'
+>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-	<link rel="icon" href="{% static 'avatar.jpg' %}">
-	<link rel="stylesheet" href="{% static 'reset.css' %}">
+        {% comment %} HTMX {% endcomment %}
+        <script src="{% static 'js/htmx.min.js' %}"></script>
+        {% django_htmx_script %}
 
-	<!-- Bootstrap CSS -->
-	<link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+        {% comment %} Tailwind CSS - Flowbite {% endcomment %}
+        <link
+            href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.0/flowbite.min.css"
+            rel="stylesheet"
+        />
 
-	<!-- LineIcon -->
-	<link href="https://cdn.lineicons.com/3.0/lineicons.css" rel="stylesheet">
+        <link rel="stylesheet" href="{% static "css/style.css" %}"> 
+        
+        {% comment %} SEO {% endcomment %}
+        <meta name="title" content="{{ profile.title }}" />
+        <meta name="description" content="{{ profile.description }}" />
+        <meta name="keywords" content="{{ profile.keywords }}" />
+        <meta name="robots" content="index, follow" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta name="language" content="English" />
+        <meta name="revisit-after" content="1 days" />
+        <meta name="author" content="{{ profile.title }}" />
+        <meta property="og:title" content="{{ profile.title }}">
+        <meta property="og:site_name" content="{{ profile.title }}">
+        <meta property="og:url" content="{{ request.get_full_path }}">
+        <meta property="og:description" content="{{ profile.description }}">
+        <meta property="og:type" content="website">
+        <meta property="og:image" content="{{ profile.profile_image.url }}">
 
-	<link rel="stylesheet" href="{% static 'css/style.css' %}">
-</head>
-<body>
-	<div class="container">
-		<header>
-			<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-				<div class="container-fluid">
-					<span class="navbar-brand">Now at - {% block brand %}Kyle Sin Lynn{% endblock %}</span>
-					<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
-					<div class="collapse navbar-collapse justify-content-end" id="navbarNavAltMarkup">
-						<a href="{% url 'home' %}" class="nav-link text-white">
-							<i class="lni lni-home"></i> Home
-						</a>
-						<a href="{% url 'projects-list' %}" class="nav-link text-white">
-							<i class="lni lni-github"></i> Projects
-						</a>
-						<a href="{% url 'posts' %}" class="nav-link text-white">
-							<i class="lni lni-blogger"></i> Blog
-						</a>
-						<a href="{% url 'contact' %}" class="nav-link text-white">
-							<i class="lni lni-phone"></i> Contact
-						</a>
-						<!-- User Authentication -->
-						{% if user.is_authenticated %}
-						<a href="{% url 'new_post' %}" class="nav-link text-white">
-							New Post
-						</a>
-						<a href="{% url 'logout' %}" class="nav-link text-white">
-							Logout
-						</a>
-						{% else %}
-						<a href="{% url 'login' %}" class="nav-link text-white">
-							Login
-						</a>
-						{% endif %}
-					</div>
-				</div>
-			</nav>
-		</header>
-		<main>
-		{% block main %}{% endblock %}
-		</main>
-		<footer>
-			<div class="text-center">
-				<p>Copyright &copy; <span id="year"></span></p>
-			</div>
-		</footer>	
-	</div>
+        <link rel="icon" href="{{ profile.profile_image.url }}" type="image/x-icon" />
 
-	<!-- Bootstrap JS -->
-	<script src="{% static 'scripts/bootstrap.bundle.min.js' %}"></script>
+        <title>{% block title %}{{ profile.title }}{% endblock title %}</title>
 
-	<script src="{% static 'scripts/year.js' %}"></script>
-	<script>
-		document.getElementById("year").innerHTML = "<a href='https://cybermm.tech'>Myanmar Cyber Youth</a>"
-	</script>
-</body>
+        <style>
+            {% block style %}{% endblock style %}
+        </style>
+    </head>
+    <body>
+        <header>
+            <nav class="bg-white border-gray-200 dark:bg-gray-900">
+                <div
+                    class="flex flex-wrap justify-between items-center mx-auto max-w-screen-xl p-4"
+                >
+                    <a
+                        href="{% url "portfolio:index" %}"
+                        class="flex items-center space-x-3 rtl:space-x-reverse"
+                    >
+                        <span
+                            class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white"
+                            >{{ profile.title }}</span
+                        >
+                    </a>
+                    {% include "_indicator.html" with id="default-indicator" %}
+                    <div class="flex items-center space-x-6 rtl:space-x-reverse">
+                        <a
+                            href="tel:{{ profile.phone }}"
+                            class="text-sm text-gray-500 dark:text-white hover:underline"
+                            >{{ profile.phone }}</a
+                        >
+                        <a
+                            href="mailto:{{ profile.email }}"
+                            class="text-sm text-gray-500 dark:text-white hover:underline"
+                            >{{ profile.email }}</a
+                        >
+                        {% if user.is_authenticated %}
+                        {% include "header/auth.html" %}
+                        {% else %}
+                        {% include "header/noauth.html" %}
+                        {% endif %}
+                    </div>
+                </div>
+            </nav>
+            <nav class="bg-gray-50 dark:bg-gray-700">
+                <div class="max-w-screen-xl px-4 py-3 mx-auto">
+                    <div class="flex items-center">
+                        <ul
+                            class="flex flex-row font-medium mt-0 space-x-8 rtl:space-x-reverse text-sm"
+                        >
+                            <li>
+                                <a
+                                    href="{% url "portfolio:index" %}#home"
+                                    class="text-gray-900 dark:text-white hover:underline"
+                                    aria-current="page"
+                                    >home</a>
+                            </li>
+                            <li>
+                                <a
+                                    href="{% url "portfolio:index" %}#process"
+                                    class="text-gray-900 dark:text-white hover:underline"
+                                    >process</a>
+                            </li>
+                            <li>
+                                <a
+                                    href="{% url "portfolio:index" %}#work"
+                                    class="text-gray-900 dark:text-white hover:underline"
+                                    >work</a>
+                            </li>
+                            <li>
+                                <a
+                                    href="{% url "portfolio:index" %}#contact"
+                                    class="text-gray-900 dark:text-white hover:underline"
+                                    >contact</a>
+                            </li>
+                            <li>
+                                <button
+                                    hx-get="{% url "blog:index" %}"
+                                    class="text-gray-900 dark:text-white hover:underline"
+                                    >blog</button>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </header>
+        <main>
+            {% block main %}{% endblock main %}
+        </main>
+        <footer>
+            <footer
+                class="bg-white rounded-lg shadow sm:flex sm:items-center sm:justify-between p-4 sm:p-6 xl:p-8 dark:bg-gray-800 antialiased"
+            >
+                <p
+                    class="mb-4 text-sm text-center text-gray-500 dark:text-gray-400 sm:mb-0"
+                >
+                    &copy; 
+                    <span id="copyright">
+                        <script>document.getElementById('copyright').replaceWith(document.createTextNode(new Date().getFullYear()))</script>
+                    </span>
+                    {{ profile.title }}. All rights reserved.
+                </p>
+                <div class="flex justify-center items-center space-x-1">
+                    <a
+                        href="https://facebook.com/{{ profile.facebook_username }}"
+                        data-tooltip-target="tooltip-facebook"
+                        class="inline-flex justify-center p-2 text-gray-500 rounded-lg cursor-pointer dark:text-gray-400 dark:hover:text-white hover:text-gray-900 hover:bg-gray-100 dark:hover:bg-gray-600"
+                    >
+                        <svg
+                            class="w-4 h-4"
+                            aria-hidden="true"
+                            xmlns="http://www.w3.org/2000/svg"
+                            fill="currentColor"
+                            viewBox="0 0 8 19"
+                        >
+                            <path
+                                fill-rule="evenodd"
+                                d="M6.135 3H8V0H6.135a4.147 4.147 0 0 0-4.142 4.142V6H0v3h2v9.938h3V9h2.021l.592-3H5V3.591A.6.6 0 0 1 5.592 3h.543Z"
+                                clip-rule="evenodd"
+                            />
+                        </svg>
+                        <span class="sr-only">Facebook</span>
+                    </a>
+                    <div
+                        id="tooltip-facebook"
+                        role="tooltip"
+                        class="inline-block absolute invisible z-10 py-2 px-3 text-sm font-medium text-white bg-gray-900 rounded-lg shadow-sm opacity-0 transition-opacity duration-300 tooltip dark:bg-gray-700"
+                    >
+                        Like us on Facebook
+                        <div class="tooltip-arrow" data-popper-arrow></div>
+                    </div>
+                    <a
+                        href="https://x.com/{{ profile.x_username }}"
+                        data-tooltip-target="tooltip-twitter"
+                        class="inline-flex justify-center p-2 text-gray-500 rounded-lg cursor-pointer dark:text-gray-400 dark:hover:text-white hover:text-gray-900 hover:bg-gray-100 dark:hover:bg-gray-600"
+                    >
+                        <svg
+                            class="w-4 h-4"
+                            aria-hidden="true"
+                            xmlns="http://www.w3.org/2000/svg"
+                            fill="none"
+                            viewBox="0 0 20 20"
+                        >
+                            <path
+                                fill="currentColor"
+                                d="M12.186 8.672 18.743.947h-2.927l-5.005 5.9-4.44-5.9H0l7.434 9.876-6.986 8.23h2.927l5.434-6.4 4.82 6.4H20L12.186 8.672Zm-2.267 2.671L8.544 9.515 3.2 2.42h2.2l4.312 5.719 1.375 1.828 5.731 7.613h-2.2l-4.699-6.237Z"
+                            />
+                        </svg>
+                        <span class="sr-only">X</span>
+                    </a>
+                    <div
+                        id="tooltip-twitter"
+                        role="tooltip"
+                        class="inline-block absolute invisible z-10 py-2 px-3 text-sm font-medium text-white bg-gray-900 rounded-lg shadow-sm opacity-0 transition-opacity duration-300 tooltip dark:bg-gray-700"
+                    >
+                        Follow us on X
+                        <div class="tooltip-arrow" data-popper-arrow></div>
+                    </div>
+                    <a
+                        href="https://github.com/{{ profile.github_username }}"
+                        data-tooltip-target="tooltip-github"
+                        class="inline-flex justify-center p-2 text-gray-500 rounded-lg cursor-pointer dark:text-gray-400 dark:hover:text-white hover:text-gray-900 hover:bg-gray-100 dark:hover:bg-gray-600"
+                    >
+                        <svg
+                            class="w-4 h-4"
+                            aria-hidden="true"
+                            xmlns="http://www.w3.org/2000/svg"
+                            fill="currentColor"
+                            viewBox="0 0 20 20"
+                        >
+                            <path
+                                fill-rule="evenodd"
+                                d="M10 .333A9.911 9.911 0 0 0 6.866 19.65c.5.092.678-.215.678-.477 0-.237-.01-1.017-.014-1.845-2.757.6-3.338-1.169-3.338-1.169a2.627 2.627 0 0 0-1.1-1.451c-.9-.615.07-.6.07-.6a2.084 2.084 0 0 1 1.518 1.021 2.11 2.11 0 0 0 2.884.823c.044-.503.268-.973.63-1.325-2.2-.25-4.516-1.1-4.516-4.9A3.832 3.832 0 0 1 4.7 7.068a3.56 3.56 0 0 1 .095-2.623s.832-.266 2.726 1.016a9.409 9.409 0 0 1 4.962 0c1.89-1.282 2.717-1.016 2.717-1.016.366.83.402 1.768.1 2.623a3.827 3.827 0 0 1 1.02 2.659c0 3.807-2.319 4.644-4.525 4.889a2.366 2.366 0 0 1 .673 1.834c0 1.326-.012 2.394-.012 2.72 0 .263.18.572.681.475A9.911 9.911 0 0 0 10 .333Z"
+                                clip-rule="evenodd"
+                            />
+                        </svg>
+                        <span class="sr-only">Github</span>
+                    </a>
+                    <div
+                        id="tooltip-github"
+                        role="tooltip"
+                        class="inline-block absolute invisible z-10 py-2 px-3 text-sm font-medium text-white bg-gray-900 rounded-lg shadow-sm opacity-0 transition-opacity duration-300 tooltip dark:bg-gray-700"
+                    >
+                        Star us on GitHub
+                        <div class="tooltip-arrow" data-popper-arrow></div>
+                    </div>
+                </div>
+            </footer>
+        </footer>
+
+        {% comment %} Tailwind CSS - Flowbite {% endcomment %}
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.0/flowbite.min.js"></script>
+
+        <script>
+            {% block script %}{% endblock script %}
+        </script>
+    </body>
 </html>

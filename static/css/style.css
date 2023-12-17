@@ -1,3 +1,15 @@
-#container {
-	margin: auto;
+html {
+    scroll-behavior: smooth;
+}
+body {
+    background-color: #fafafa;
+}
+
+.logo-color,
+.nav-links:hover {
+    color: #5a67d8;
+}
+
+body {
+    font-family: "Poppins", sans-serif;
 }

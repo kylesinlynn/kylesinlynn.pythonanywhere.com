@@ -1,49 +1,62 @@
-from django.shortcuts import render, redirect, get_object_or_404
+from django.core.paginator import Paginator
 from django.contrib.auth.decorators import login_required
-from django.utils import timezone
-from .models import Post
-from .forms import PostForm
+from django.views.decorators.http import require_http_methods
+from django.shortcuts import redirect, render, get_object_or_404
+from django.http import QueryDict
 
-''' Non-auth views'''
-def posts(request):
-	posts = Post.objects.all().order_by('-created_date')
-	return render(request, 'blog/posts.html', {'posts': posts})
+from portfolio.models import Profile
+from blog.models import Article
+from blog.forms import ArticleForm
 
-def post(request, id):
-	post = get_object_or_404(Post, id=id)
-	return render(request, 'blog/post.html', {'post': post})
+profile = lambda _: Profile.objects.latest('id')
 
-''' Auth views '''
-@login_required
-def new_post(request):
-	if request.method == 'POST':
-		form = PostForm(request.POST, request.FILES)
-		if form.is_valid():
-			post = form.save(commit=False)
-			post.author = request.user
-			post.publish()
-		return redirect('posts')
-	else:
-		form = PostForm()
-		return render(request, 'blog/new_post.html', {'form': form})
+def index(request):
+    articles = Article.objects.all()
+    page = request.GET.get("page") if 'page' in request.GET else 1
+    
+    paginator = Paginator(articles, 7)
+    blog = paginator.get_page(page)
+    
+    context = {
+        'profile': profile(1),
+        'blog': blog
+    }
+    return render(request, 'blog/index.html', context)
 
-@login_required
-def edit_post(request, id):
-	post = get_object_or_404(Post, id=id)
-	if request.method == 'POST':
-		form = PostForm(request.POST, request.FILES, instance=post)
-		if form.is_valid():
-			post = form.save(commit=False)
-			post.author = request.user
-			post.created_date = timezone.now()
-			post.publish()
-		return redirect('posts')
-	else:
-		form = PostForm(instance=post)
-		return render(request, 'blog/edit_post.html', {'form': form})
+def article(request, slug):
+    context = {
+        'profile': profile(1),
+        'article': get_object_or_404(Article, slug=slug)
+    }
+    return render(request, 'blog/article.html', context)
 
 @login_required
-def delete_post(request, id):
-	post = get_object_or_404(Post, id=id)
-	post.delete()
-	return redirect('posts')
+def create(request):
+    context = {
+        'profile': profile(1),
+        'form': ArticleForm()
+    }
+    if request.method == 'POST':
+        context['form'] = ArticleForm(request.POST, request.FILES)
+        if context['form'].is_valid():
+            context['form'].save()
+            return redirect('blog:index')
+    return render(request, 'blog/create.html', context)
+
+@login_required
+@require_http_methods(['GET', 'POST', 'DELETE'])
+def update(request, slug):
+    context = {
+        'profile': profile(1),
+        'article': get_object_or_404(Article, slug=slug),
+        'form': ArticleForm()
+    }
+    if request.method == 'POST':
+        context['form'] = ArticleForm(request.POST, request.FILES, instance=context['article'])
+        if context['form'].is_valid():
+            article = context['form'].save()
+            return redirect('blog:article', article.slug)
+    elif request.method == 'DELETE':
+        Article.objects.get(slug=slug).delete()
+        return redirect('blog:index')
+    return render(request, 'blog/update.html', context)

@@ -1,0 +1,13 @@
+{% if form.non_field_errors %}
+<div
+    id="alert-border-2"
+    class="flex items-center p-4 mb-4 text-red-800 border-t-4 border-red-300 bg-red-50 dark:text-red-400 dark:bg-gray-800 dark:border-red-800"
+    role="alert"
+>
+    <ul class="mt-1.5 list-disc list-inside">
+        {% for error in form.non_field_errors %}
+            <li>{{ error }}</li>
+        {% endfor %}
+    </ul>
+</div>
+{% endif %}

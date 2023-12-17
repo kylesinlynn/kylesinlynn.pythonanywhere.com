@@ -1,28 +1,20 @@
+from django.utils.text import slugify 
 from django.db import models
-from django.conf import settings
-from django.utils import timezone
 
-# Create your models here.
-class Post(models.Model):
-	title = models.CharField(max_length=200,)
-	content = models.TextField(blank=True,)
-	image = models.ImageField(upload_to='imgs', null=True,)
-	class Draft(models.IntegerChoices):
-		NO = 0
-		YES = 1
-		__empty__ = 0
-	draft = models.IntegerField(choices=Draft.choices)
-	# auto fill
-	author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.DO_NOTHING,)
-	created_date = models.DateTimeField(default=timezone.now, null=True,)
+from model_utils.models import TimeStampedModel
 
-	def publish(self):
-		self.created_date = timezone.now()
-		self.save()
-
-	def draft(self):
-		self.created_date = None
-		self.save()
-
-	def __str__(self):
-		return self.title
+class Article(TimeStampedModel):
+    title = models.CharField(name="title", max_length=73, help_text="Enter the article title", null=True)
+    description = models.TextField(name="description", help_text="Enter text", null=True)
+    image = models.ImageField(name="image", help_text="Upload cover image", blank=True, null=True)
+    slug = models.SlugField(name="slug", auto_created=True, unique=True, blank=True, null=True)
+    
+    class Meta:
+        ordering = ('-id',)
+    
+    def save(self, *args, **kwargs):
+        self.slug = slugify(self.title)
+        return super().save(*args, **kwargs)
+    
+    def __str__(self) -> str:
+        return self.title
