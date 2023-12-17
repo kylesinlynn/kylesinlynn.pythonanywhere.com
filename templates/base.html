@@ -137,7 +137,7 @@
                 >
                     &copy; 
                     <span id="copyright">
-                        <script>document.getElementById('copyright').appendChild(document.createTextNode(new Date().getFullYear()))</script>
+                        <script>document.getElementById('copyright').replaceWith(document.createTextNode(new Date().getFullYear()))</script>
                     </span>
                     {{ profile.title }}. All rights reserved.
                 </p>
