@@ -2,6 +2,8 @@
 
 This is the [README.md](README.md) for my portfolio website, crafted using the powerful and versatile Django framework. It's a testament to my skills as a software developer and showcases my passion for creating impactful and user-friendly web experiences.
 
+**Development Notice:** This website is in development. For a stable version, please visit the [Releases](https://github.com/kylesinlynn/kylesinlynn.pythonanywhere.com/releases) page.
+
 **Features:**
 
 * **Modern and responsive design:** Built with a focus on mobile-first responsiveness and clean aesthetics, ensuring a smooth experience across all devices.
