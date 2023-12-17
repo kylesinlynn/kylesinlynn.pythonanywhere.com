@@ -43,6 +43,9 @@
         {% endif %}
     </div>
     <div class="mb-5">
+        {% if article.image %}
+            <img class="h-auto max-w-sm mx-auto" src="{{ article.image.url }}" alt="{{ article.title }}'s image">
+        {% endif %}
         <label class="block mb-2 text-sm font-medium text-dark-900 dark:text-white" for="image">Upload image</label>
         <input class="block w-full text-sm text-dark-900 border border-dark-300 rounded-lg cursor-pointer bg-dark-50 dark:text-dark-400 focus:outline-none dark:bg-dark-700 dark:border-dark-600 dark:placeholder-dark-400" name="image" id="image" type="file" accept="image/*" value="{% if article.image %}{{ article.image.url }}{% endif %}">
     </div>
