@@ -39,9 +39,9 @@
         <meta property="og:url" content="{{ request.get_full_path }}">
         <meta property="og:description" content="{{ profile.description }}">
         <meta property="og:type" content="website">
-        <meta property="og:image" content="{{ request.get_host }}{{ profile.profile_image.url }}">
+        <meta property="og:image" content="{{ profile.profile_image.url }}">
 
-        <link rel="icon" href="{{ request.get_host }}{{ profile.profile_image.url }}" type="image/x-icon" />
+        <link rel="shortcut icon" href="{{ profile.profile_image.url }}" type="image/x-icon" />
 
         <title>{% block title %}{{ profile.title }}{% endblock title %}</title>
 
