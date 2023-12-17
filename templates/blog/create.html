@@ -4,6 +4,7 @@
     hx-post='{% url "blog:create" %}'
     class="max-w-sm mx-auto"
 >
+    <h2 class="mb-4 text-xl font-bold text-gray-900 dark:text-white">Create an article</h2>
     {% csrf_token %}
     <div class="mb-5">
         {% include "_form_errors.html" with form=form %}
