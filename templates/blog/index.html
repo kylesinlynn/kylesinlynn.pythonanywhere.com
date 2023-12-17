@@ -22,7 +22,7 @@
                     class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white"
                 >
                     <button 
-                        hx-get="{% url "blog:article" article.id %}"
+                        hx-get="{% url "blog:article" article.slug %}"
                     >{{ article.title }}</button>
                 </h2>
                 <p class="mb-5 font-light text-gray-500 dark:text-gray-400">
@@ -40,7 +40,7 @@
                         </span>
                     </div>
                     <button
-                        hx-get="{% url "blog:article" article.id %}"
+                        hx-get="{% url "blog:article" article.slug %}"
                         class="inline-flex items-center font-medium text-primary-600 dark:text-primary-500 hover:underline"
                     >
                         Read more
