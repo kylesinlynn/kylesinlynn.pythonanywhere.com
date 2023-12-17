@@ -19,7 +19,7 @@ This is the [README.md](README.md) for my portfolio website, crafted using the p
 
 **Getting Started:**
 
-1. **Clone the repository:** `git clone https://github.com/kylesinlynn/kylesinlynn.pythonanywhere.com.git`
+1. **Clone the repository:** `git clone https://github.com/kylesinlynn/kylesinlynn.pythonanywhere.com.git --branch v3.7.37 --depth 1`
 2. **Install dependencies:** `pip install -r requirements.txt`
 3. **Set environment variables:** Create a `.env` file and set any secret keys or configuration values (e.g., database connection details).
 4. **Run migrations:** `python manage.py migrate`
