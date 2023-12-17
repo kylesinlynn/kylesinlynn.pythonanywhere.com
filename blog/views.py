@@ -51,13 +51,12 @@ def update(request, slug):
         'article': get_object_or_404(Article, slug=slug),
         'form': ArticleForm()
     }
-    match request.method:
-        case 'POST':
-            context['form'] = ArticleForm(request.POST, request.FILES, instance=context['article'])
-            if context['form'].is_valid():
-                article = context['form'].save()
-                return redirect('blog:article', article.slug)
-        case 'DELETE':
-            Article.objects.get(slug=slug).delete()
-            return redirect('blog:index')
+    if request.method == 'POST':
+        context['form'] = ArticleForm(request.POST, request.FILES, instance=context['article'])
+        if context['form'].is_valid():
+            article = context['form'].save()
+            return redirect('blog:article', article.slug)
+    elif request.method == 'DELETE':
+        Article.objects.get(slug=slug).delete()
+        return redirect('blog:index')
     return render(request, 'blog/update.html', context)
