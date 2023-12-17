@@ -1,8 +1,10 @@
 from django.core.paginator import Paginator
-from django.shortcuts import render
+from django.contrib.auth.decorators import login_required
+from django.shortcuts import redirect, render
 
 from portfolio.models import Profile
 from blog.models import Article
+from blog.forms import ArticleForm
 
 profile = lambda _: Profile.objects.latest('id')
 
@@ -14,13 +16,23 @@ def index(request):
     blog = paginator.get_page(page)
     
     context = {
-        'profile': profile(7),
+        'profile': profile(1),
         'blog': blog
     }
     return render(request, 'blog/index.html', context)
 
+@login_required
 def create(request):
-    pass
+    context = {
+        'profile': profile(1),
+        'form': ArticleForm()
+    }
+    if request.method == 'POST':
+        context['form'] = ArticleForm(request.POST, request.FILES)
+        if context['form'].is_valid():
+            context['form'].save()
+            return redirect('blog:index')
+    return render(request, 'blog/create.html', context)
 
 def article(request, slug):
     context = {

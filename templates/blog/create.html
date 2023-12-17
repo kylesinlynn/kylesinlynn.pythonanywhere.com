@@ -1,5 +1,63 @@
-{% extends "base.html" %}
-
-{% block main %}
-
+{% extends "base.html" %} {% block main %}
+<form 
+    hx-encoding='multipart/form-data'
+    hx-post='{% url "blog:create" %}'
+    class="max-w-sm mx-auto"
+>
+    {% csrf_token %}
+    <div class="mb-5">
+        {% if form.non_field_errors %}
+        <div id="alert-border-2" class="flex items-center p-4 mb-4 text-red-800 border-t-4 border-red-300 bg-red-50 dark:text-red-400 dark:bg-gray-800 dark:border-red-800" role="alert">
+            <ul class="mt-1.5 list-disc list-inside">
+                {% for error in form.non_field_errors %}
+                <li>{{ error }}</li>
+                {% endfor %}
+            </ul>
+            <button type="button" class="ms-auto -mx-1.5 -my-1.5 bg-red-50 text-red-500 rounded-lg focus:ring-2 focus:ring-red-400 p-1.5 hover:bg-red-200 inline-flex items-center justify-center h-8 w-8 dark:bg-gray-800 dark:text-red-400 dark:hover:bg-gray-700"  data-dismiss-target="#alert-border-2" aria-label="Close">
+                <span class="sr-only">Dismiss</span>
+                <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
+                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
+                </svg>
+            </button>
+        </div>
+        {% endif %}
+        <label
+            for="title"
+            class="block mb-2 text-sm font-medium text-gray-900 dark:text-yellow-300"
+            >Put article title</label
+        >
+        <input
+            type="title"
+            id="title"
+            name="title"
+            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-yellow-500 focus:border-yellow-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-yellow-300 dark:focus:ring-yellow-500 dark:focus:border-yellow-500"
+            placeholder="A Grug Brained Developer"
+            required
+        />
+    </div>
+    <div class="mb-5">
+        <label
+            for="description"
+            class="block mb-2 text-sm font-medium text-gray-900 dark:text-yellow-300"
+            >Put article text</label
+        >
+        <textarea
+            type="text"
+            id="description"
+            name="description"
+            class="block w-full p-4 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 sm:text-md focus:ring-yellow-500 focus:border-yellow-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-yellow-300 dark:focus:ring-yellow-500 dark:focus:border-yellow-500"
+            placeholder="complexity very, very bad"
+        ></textarea>
+    </div>
+    <div class="mb-5">
+        <label class="block mb-2 text-sm font-medium text-dark-900 dark:text-white" for="image">Upload image</label>
+        <input class="block w-full text-sm text-dark-900 border border-dark-300 rounded-lg cursor-pointer bg-dark-50 dark:text-dark-400 focus:outline-none dark:bg-dark-700 dark:border-dark-600 dark:placeholder-dark-400" name="image" id="image" type="file" accept="image/*">
+    </div>
+    <button
+        type="submit"
+        class="text-yellow-700 hover:bg-yellow-300 focus:ring-4 focus:outline-none focus:ring-yellow-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-yellow-600 dark:hover:bg-yellow-700 dark:focus:ring-yellow-800"
+    >
+        Create
+    </button>
+</form>
 {% endblock main %}

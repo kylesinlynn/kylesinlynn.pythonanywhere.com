@@ -86,6 +86,7 @@ DATABASES = {
 }
 
 # Authentication Redirect URLs
+LOGIN_URL = '/auth/login/'
 LOGIN_REDIRECT_URL = 'portfolio:index'
 LOGOUT_REDIRECT_URL = 'portfolio:index'
 
