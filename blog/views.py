@@ -22,9 +22,9 @@ def index(request):
 def create(request):
     pass
 
-def article(request, id):
+def article(request, slug):
     context = {
         'profile': profile(1),
-        'article': Article.objects.get(pk=id)
+        'article': Article.objects.get(slug=slug)
     }
     return render(request, 'blog/article.html', context)
