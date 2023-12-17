@@ -1,6 +1,8 @@
 from django.core.paginator import Paginator
 from django.contrib.auth.decorators import login_required
-from django.shortcuts import redirect, render
+from django.views.decorators.http import require_http_methods
+from django.shortcuts import redirect, render, get_object_or_404
+from django.http import QueryDict
 
 from portfolio.models import Profile
 from blog.models import Article
@@ -21,6 +23,13 @@ def index(request):
     }
     return render(request, 'blog/index.html', context)
 
+def article(request, slug):
+    context = {
+        'profile': profile(1),
+        'article': get_object_or_404(Article, slug=slug)
+    }
+    return render(request, 'blog/article.html', context)
+
 @login_required
 def create(request):
     context = {
@@ -34,9 +43,21 @@ def create(request):
             return redirect('blog:index')
     return render(request, 'blog/create.html', context)
 
-def article(request, slug):
+@login_required
+@require_http_methods(['GET', 'POST', 'DELETE'])
+def update(request, slug):
     context = {
         'profile': profile(1),
-        'article': Article.objects.get(slug=slug)
+        'article': get_object_or_404(Article, slug=slug),
+        'form': ArticleForm()
     }
-    return render(request, 'blog/article.html', context)
+    match request.method:
+        case 'POST':
+            context['form'] = ArticleForm(request.POST, request.FILES, instance=context['article'])
+            if context['form'].is_valid():
+                article = context['form'].save()
+                return redirect('blog:article', article.slug)
+        case 'DELETE':
+            Article.objects.get(slug=slug).delete()
+            return redirect('blog:index')
+    return render(request, 'blog/update.html', context)

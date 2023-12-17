@@ -9,6 +9,7 @@
     hx-target="body"
     hx-swap="outerHTML"
     hx-indicator="#default-indicator"
+    hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}'
 >
     <head>
         <meta charset="UTF-8" />

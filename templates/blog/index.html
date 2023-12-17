@@ -29,6 +29,9 @@
             >
                 <div class="flex justify-between items-center mb-5 text-gray-500">
                     <span class="text-sm">{{ article.created|naturaltime }}</span>
+                    {% if user.is_authenticated %}
+                        {% include "_more_options.html" with slug=article.slug %}
+                    {% endif %}
                 </div>
                 <h2
                     class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white"
@@ -56,8 +59,8 @@
                         hx-indicator="#{{ article.slug }}"
                         class="inline-flex items-center font-medium text-primary-600 dark:text-primary-500 hover:underline"
                     >
-                        Read more
                         {% include "_indicator.html" with id=article.slug %}
+                        Read more
                         <svg
                             class="ml-2 w-4 h-4"
                             fill="currentColor"
