@@ -7,8 +7,11 @@ class Article(models.Model):
     image = models.ImageField(name="image", help_text="Upload cover image", blank=True, null=True)
     slug = models.SlugField(name="slug", auto_created=True, unique=True, blank=True, null=True)
     
-    created_at = models.DateTimeField(auto_now_add=True, editable=False, null=True)
-    updated_at = models.DateTimeField(auto_now=True, editable=False, null=True)
+    created_at = models.DateTimeField(auto_now_add=True, null=True)
+    updated_at = models.DateTimeField(auto_now=True, null=True)
+    
+    class Meta:
+        ordering = ('-created_at',)
     
     def save(self, *args, **kwargs):
         self.slug = slugify(self.title)
