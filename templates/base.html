@@ -8,6 +8,7 @@
     hx-push-url="true"
     hx-target="body"
     hx-swap="outerHTML"
+    hx-indicator="#default-indicator"
 >
     <head>
         <meta charset="UTF-8" />
@@ -50,9 +51,7 @@
         </style>
     </head>
     <body>
-        <header
-            hx-indicator="#header"
-        >
+        <header>
             <nav class="bg-white border-gray-200 dark:bg-gray-900">
                 <div
                     class="flex flex-wrap justify-between items-center mx-auto max-w-screen-xl p-4"
@@ -66,7 +65,7 @@
                             >{{ profile.title }}</span
                         >
                     </a>
-                    {% include "_indicator.html" with id="header" %}
+                    {% include "_indicator.html" with id="default-indicator" %}
                     <div class="flex items-center space-x-6 rtl:space-x-reverse">
                         <a
                             href="tel:{{ profile.phone }}"
