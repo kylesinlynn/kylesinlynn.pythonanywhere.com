@@ -2,8 +2,6 @@
 
 This is the [README.md](README.md) for my portfolio website, crafted using the powerful and versatile Django framework. It's a testament to my skills as a software developer and showcases my passion for creating impactful and user-friendly web experiences.
 
-**Development Notice:** This website is in development. For a stable version, please visit the [Releases](https://github.com/kylesinlynn/kylesinlynn.pythonanywhere.com/releases) page.
-
 **Features:**
 
 * **Modern and responsive design:** Built with a focus on mobile-first responsiveness and clean aesthetics, ensuring a smooth experience across all devices.
@@ -21,7 +19,7 @@ This is the [README.md](README.md) for my portfolio website, crafted using the p
 
 **Getting Started:**
 
-1. **Clone the repository:** `git clone https://github.com/kylesinlynn/kylesinlynn.pythonanywhere.com.git`
+1. **Clone the repository:** `git clone https://github.com/kylesinlynn/kylesinlynn.pythonanywhere.com.git --branch v3.7.73 --depth 1`
 2. **Install dependencies:** `pip install -r requirements.txt`
 3. **Set environment variables:** Create a `.env` file and set any secret keys or configuration values (e.g., database connection details).
 4. **Run migrations:** `python manage.py migrate`
