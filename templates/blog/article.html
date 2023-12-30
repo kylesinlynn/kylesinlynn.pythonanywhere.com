@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 
 {% load humanize %}
+{% load markdownify %}
 
 {% block main %}
 <div class="pt-8 pb-16 lg:pt-16 lg:pb-24 bg-white dark:bg-gray-900 antialiased">
@@ -52,7 +53,7 @@
             </figure>
             {% endif %}
             <p class="my-2 lg:px-3">
-                {{ article.description }}
+                {{ article.description|markdownify }}
             </p>
         </article>
     </div>
