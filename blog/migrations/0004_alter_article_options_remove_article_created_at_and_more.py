@@ -6,32 +6,39 @@ from django.db import migrations
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('blog', '0003_alter_article_image'),
+        ("blog", "0003_alter_article_image"),
     ]
 
     operations = [
         migrations.AlterModelOptions(
-            name='article',
-            options={'ordering': ('-id',)},
+            name="article",
+            options={"ordering": ("-id",)},
         ),
         migrations.RemoveField(
-            model_name='article',
-            name='created_at',
+            model_name="article",
+            name="created_at",
         ),
         migrations.RemoveField(
-            model_name='article',
-            name='updated_at',
+            model_name="article",
+            name="updated_at",
         ),
         migrations.AddField(
-            model_name='article',
-            name='created',
-            field=model_utils.fields.AutoCreatedField(default=django.utils.timezone.now, editable=False, verbose_name='created'),
+            model_name="article",
+            name="created",
+            field=model_utils.fields.AutoCreatedField(
+                default=django.utils.timezone.now,
+                editable=False,
+                verbose_name="created",
+            ),
         ),
         migrations.AddField(
-            model_name='article',
-            name='modified',
-            field=model_utils.fields.AutoLastModifiedField(default=django.utils.timezone.now, editable=False, verbose_name='modified'),
+            model_name="article",
+            name="modified",
+            field=model_utils.fields.AutoLastModifiedField(
+                default=django.utils.timezone.now,
+                editable=False,
+                verbose_name="modified",
+            ),
         ),
     ]

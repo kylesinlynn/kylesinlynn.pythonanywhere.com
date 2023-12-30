@@ -4,25 +4,80 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     initial = True
 
-    dependencies = [
-    ]
+    dependencies = []
 
     operations = [
         migrations.CreateModel(
-            name='Profile',
+            name="Profile",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('title', models.CharField(help_text='Enter your website title', max_length=255, null=True)),
-                ('description', models.TextField(help_text='Enter your website description', max_length=500, null=True)),
-                ('profile_image', models.ImageField(blank=True, help_text='Upload your profile image', null=True, upload_to='uploads/')),
-                ('email', models.EmailField(help_text='Enter your email address', max_length=255, null=True)),
-                ('phone', models.CharField(help_text='Enter your phone number', max_length=255, null=True)),
-                ('facebook_username', models.CharField(help_text='Enter your facebook username', max_length=255, null=True)),
-                ('x_username', models.CharField(help_text='Enter your X username', max_length=255, null=True)),
-                ('github_username', models.CharField(help_text='Enter your GitHub username', max_length=255, null=True)),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                (
+                    "title",
+                    models.CharField(
+                        help_text="Enter your website title", max_length=255, null=True
+                    ),
+                ),
+                (
+                    "description",
+                    models.TextField(
+                        help_text="Enter your website description",
+                        max_length=500,
+                        null=True,
+                    ),
+                ),
+                (
+                    "profile_image",
+                    models.ImageField(
+                        blank=True,
+                        help_text="Upload your profile image",
+                        null=True,
+                        upload_to="uploads/",
+                    ),
+                ),
+                (
+                    "email",
+                    models.EmailField(
+                        help_text="Enter your email address", max_length=255, null=True
+                    ),
+                ),
+                (
+                    "phone",
+                    models.CharField(
+                        help_text="Enter your phone number", max_length=255, null=True
+                    ),
+                ),
+                (
+                    "facebook_username",
+                    models.CharField(
+                        help_text="Enter your facebook username",
+                        max_length=255,
+                        null=True,
+                    ),
+                ),
+                (
+                    "x_username",
+                    models.CharField(
+                        help_text="Enter your X username", max_length=255, null=True
+                    ),
+                ),
+                (
+                    "github_username",
+                    models.CharField(
+                        help_text="Enter your GitHub username",
+                        max_length=255,
+                        null=True,
+                    ),
+                ),
             ],
         ),
     ]

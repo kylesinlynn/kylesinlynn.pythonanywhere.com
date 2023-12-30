@@ -5,26 +5,69 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('portfolio', '0001_initial'),
+        ("portfolio", "0001_initial"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='profile',
-            name='keywords',
-            field=models.TextField(help_text='Enter search keywords', null=True),
+            model_name="profile",
+            name="keywords",
+            field=models.TextField(help_text="Enter search keywords", null=True),
         ),
         migrations.CreateModel(
-            name='Work',
+            name="Work",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('client', models.CharField(blank=True, help_text='Enter your client name', max_length=255, null=True)),
-                ('title', models.CharField(blank=True, help_text='Enter project name', max_length=255, null=True)),
-                ('description', models.TextField(blank=True, help_text='Enter the details of the project', max_length=500, null=True)),
-                ('link', models.CharField(default='#', help_text='Enter project link', max_length=500)),
-                ('profile', models.ForeignKey(on_delete=django.db.models.deletion.DO_NOTHING, related_name='profile', to='portfolio.profile')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                (
+                    "client",
+                    models.CharField(
+                        blank=True,
+                        help_text="Enter your client name",
+                        max_length=255,
+                        null=True,
+                    ),
+                ),
+                (
+                    "title",
+                    models.CharField(
+                        blank=True,
+                        help_text="Enter project name",
+                        max_length=255,
+                        null=True,
+                    ),
+                ),
+                (
+                    "description",
+                    models.TextField(
+                        blank=True,
+                        help_text="Enter the details of the project",
+                        max_length=500,
+                        null=True,
+                    ),
+                ),
+                (
+                    "link",
+                    models.CharField(
+                        default="#", help_text="Enter project link", max_length=500
+                    ),
+                ),
+                (
+                    "profile",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.DO_NOTHING,
+                        related_name="profile",
+                        to="portfolio.profile",
+                    ),
+                ),
             ],
         ),
     ]

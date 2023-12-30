@@ -4,23 +4,39 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     initial = True
 
-    dependencies = [
-    ]
+    dependencies = []
 
     operations = [
         migrations.CreateModel(
-            name='Article',
+            name="Article",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('slug', models.SlugField(auto_created=True, null=True, unique=True)),
-                ('title', models.CharField(help_text='Enter the article title', max_length=73, null=True)),
-                ('description', models.TextField(help_text='Enter text', null=True)),
-                ('image', models.ImageField(help_text='Upload cover image', null=True, upload_to='')),
-                ('created_at', models.DateTimeField(auto_now_add=True, null=True)),
-                ('updated_at', models.DateTimeField(auto_now=True, null=True)),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("slug", models.SlugField(auto_created=True, null=True, unique=True)),
+                (
+                    "title",
+                    models.CharField(
+                        help_text="Enter the article title", max_length=73, null=True
+                    ),
+                ),
+                ("description", models.TextField(help_text="Enter text", null=True)),
+                (
+                    "image",
+                    models.ImageField(
+                        help_text="Upload cover image", null=True, upload_to=""
+                    ),
+                ),
+                ("created_at", models.DateTimeField(auto_now_add=True, null=True)),
+                ("updated_at", models.DateTimeField(auto_now=True, null=True)),
             ],
         ),
     ]

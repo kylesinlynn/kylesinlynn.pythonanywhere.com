@@ -4,15 +4,16 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('portfolio', '0005_alter_work_profile'),
+        ("portfolio", "0005_alter_work_profile"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='profile',
-            name='resume_link',
-            field=models.CharField(blank=True, help_text='Enter your resume url', max_length=500, null=True),
+            model_name="profile",
+            name="resume_link",
+            field=models.CharField(
+                blank=True, help_text="Enter your resume url", max_length=500, null=True
+            ),
         ),
     ]

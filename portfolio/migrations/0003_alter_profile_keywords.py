@@ -4,15 +4,16 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('portfolio', '0002_profile_keywords_work'),
+        ("portfolio", "0002_profile_keywords_work"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='profile',
-            name='keywords',
-            field=models.TextField(help_text='Enter search keywords seperated by comma (,)', null=True),
+            model_name="profile",
+            name="keywords",
+            field=models.TextField(
+                help_text="Enter search keywords seperated by comma (,)", null=True
+            ),
         ),
     ]

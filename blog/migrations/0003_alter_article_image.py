@@ -4,15 +4,16 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('blog', '0002_alter_article_slug'),
+        ("blog", "0002_alter_article_slug"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='article',
-            name='image',
-            field=models.ImageField(blank=True, help_text='Upload cover image', null=True, upload_to=''),
+            model_name="article",
+            name="image",
+            field=models.ImageField(
+                blank=True, help_text="Upload cover image", null=True, upload_to=""
+            ),
         ),
     ]
