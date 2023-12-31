@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     "django.contrib.humanize",  # Django Model Utils
     "django_htmx",  # Django HTMX combination
     "markdownify",  # Markdown in Django Template
+    "pwa",  # Progressive Web App
     "portfolio",
     "blog",
 ]
@@ -186,3 +187,36 @@ MARKDOWNIFY = {
         },
     }
 }
+
+# Progressive Web App (PWA)
+# https://github.com/silviolleite/django-pwa
+
+PWA_APP_NAME = config("APP_NAME")
+PWA_APP_DESCRIPTION = config("APP_DESCRIPTION")
+PWA_APP_THEME_COLOR = "#0A0302"
+PWA_APP_BACKGROUND_COLOR = "#ffffff"
+PWA_APP_DISPLAY = "standalone"
+PWA_APP_SCOPE = "/"
+PWA_APP_ORIENTATION = "any"
+PWA_APP_START_URL = "/"
+PWA_APP_STATUS_BAR_COLOR = "default"
+PWA_APP_ICONS = [{"src": config("APP_ICON"), "sizes": "160x160"}]
+PWA_APP_ICONS_APPLE = [{"src": config("APP_ICON"), "sizes": "160x160"}]
+PWA_APP_SPLASH_SCREEN = [
+    {
+        "src": config("APP_ICON"),
+        "media": "(device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2)",
+    }
+]
+PWA_APP_DIR = "ltr"
+PWA_APP_LANG = "en-UK"
+PWA_APP_SHORTCUTS = [
+    {
+        "name": config("APP_NAME"),
+        "url": "/target",
+        "description": config("APP_DESCRIPTION"),
+    }
+]
+PWA_APP_SCREENSHOTS = [
+    {"src": config("APP_ICON"), "sizes": "750x1334", "type": "image/png"}
+]

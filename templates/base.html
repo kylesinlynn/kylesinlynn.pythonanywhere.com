@@ -1,5 +1,6 @@
 {% load static %}
 {% load django_htmx %}
+{% load pwa %}
 
 <!DOCTYPE html>
 <html
@@ -25,7 +26,9 @@
             rel="stylesheet"
         />
 
-        <link rel="stylesheet" href="{% static "css/style.css" %}"> 
+        <link rel="stylesheet" href="{% static "css/style.css" %}">
+
+        {% progressive_web_app_meta %}
         
         {% comment %} SEO {% endcomment %}
         <meta name="title" content="{{ profile.title }}" />

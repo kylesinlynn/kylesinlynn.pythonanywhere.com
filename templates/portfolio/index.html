@@ -1,5 +1,7 @@
 {% extends "base.html" %}
 
+{% load static %}
+
 {% block main %}
 <section id="home" class="bg-white dark:bg-gray-900">
     <div
@@ -8,7 +10,7 @@
         <div class="lg:mt-0 lg:col-span-5 lg:flex my-3">
             <img
                 class="w-full h-auto max-w-xl rounded-lg"
-                src="{{ profile.profile_image.url }}"
+                src="{% if profile.profile_image %}{{ profile.profile_image.url }}{% else %}{% static "img/logo.jpg" %}{% endif %}"
                 alt="{{ profile.title }}'s image"
             />
         </div>
