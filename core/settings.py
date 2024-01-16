@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "django.contrib.humanize",  # Django Model Utils
+    "django_browser_reload", # Django Browser Reload
     "django_htmx",  # Django HTMX combination
     "markdownify",  # Markdown in Django Template
     "pwa",  # Progressive Web App
@@ -53,6 +54,7 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
+    "django_browser_reload.middleware.BrowserReloadMiddleware", # Django Browser Reload
     "django_htmx.middleware.HtmxMiddleware",  # Django HTMX combination
 ]
 
