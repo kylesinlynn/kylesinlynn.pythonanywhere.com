@@ -55,6 +55,18 @@
         </style>
     </head>
     <body>
+        {% if debug %}
+            if (typeof window.htmx !== "undefined") {
+                htmx.on("htmx:afterSettle", function(detail) {
+                    if (
+                        typeof window.djdt !== "undefined"
+                        && detail.target instanceof HTMLBodyElement
+                    ) {
+                        djdt.show_toolbar();
+                    }
+                });
+            }
+        {% endif %}
         <header>
             <nav class="bg-white border-gray-200 dark:bg-gray-900">
                 <div
