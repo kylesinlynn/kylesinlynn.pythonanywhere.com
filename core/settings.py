@@ -62,6 +62,10 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = "core.urls"
 
+DEBUG_TOOLBAR_CONFIG = {
+    "ROOT_TAG_EXTRA_ATTRS": "hx-preserve"
+}
+
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
