@@ -37,15 +37,21 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    "django.contrib.sites",
+    "django.contrib.sitemaps",
+    "django.contrib.redirects",
     "django.contrib.humanize",  # Django Model Utils
-    "django_browser_reload", # Django Browser Reload
-    "debug_toolbar", # Django Debug Toolbar
+    "django_browser_reload",  # Django Browser Reload
+    "django_extensions",  # Django Extensions
+    "debug_toolbar",  # Django Debug Toolbar
     "django_htmx",  # Django HTMX combination
     "markdownify",  # Markdown in Django Template
     "pwa",  # Progressive Web App
     "portfolio",
     "blog",
 ]
+
+SITE_ID = 1
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
@@ -55,16 +61,15 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
-    "django_browser_reload.middleware.BrowserReloadMiddleware", # Django Browser Reload
+    "django.contrib.redirects.middleware.RedirectFallbackMiddleware",
+    "django_browser_reload.middleware.BrowserReloadMiddleware",  # Django Browser Reload
     "debug_toolbar.middleware.DebugToolbarMiddleware",  # Django Debug Toolbar
     "django_htmx.middleware.HtmxMiddleware",  # Django HTMX combination
 ]
 
 ROOT_URLCONF = "core.urls"
 
-DEBUG_TOOLBAR_CONFIG = {
-    "ROOT_TAG_EXTRA_ATTRS": "hx-preserve"
-}
+DEBUG_TOOLBAR_CONFIG = {"ROOT_TAG_EXTRA_ATTRS": "hx-preserve"}
 
 TEMPLATES = [
     {
